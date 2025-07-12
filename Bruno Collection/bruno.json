@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "FreeCodeCamp.org Go Tutorial",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
