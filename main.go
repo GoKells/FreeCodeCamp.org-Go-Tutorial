@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/joho/godotenv"
 )
 
@@ -17,11 +18,19 @@ type Todo struct {
 
 func main() {
 	app := fiber.New()
+	
 
 	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
+
+	CLIENT_URL := os.Getenv("FRONTEND_URL")
+
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: CLIENT_URL,
+		AllowHeaders: "Origin,Content-Type,Accept",
+	}))
 
 	PORT := os.Getenv("PORT")
 
